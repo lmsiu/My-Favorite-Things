@@ -1,0 +1,44 @@
+var indexnum = 0;
+var favthings = ["https://2.bp.blogspot.com/-85I2Vlutu1k/T8zqW7LIaDI/AAAAAAAAMxQ/cpRi4F9ygGk/s1600/these-funny-cats-001-030.jpg", "https://assets.dci.org/5bd2f357629f4b0a832f7b0c_YUc7t_WWMcj0nPjkCcRTcAyGXzhw-pRK.jpg", "https://food.fnr.sndimg.com/content/dam/images/food/fullset/2015/10/23/0/fnd_pasta-istock.jpg.rend.hgtvcom.616.462.suffix/1445621493536.jpeg"];
+updatetxt(indexnum);
+onEvent("nextbtn", "click", function() {
+  Up ();
+});
+onEvent("backbtn", "click",function(){
+  Down();
+});
+onEvent("screen1", "keyup", function(event){
+  if (event.key == "Right"){
+    Up();
+  }
+});
+onEvent("screen1", "keyup", function (event) {
+  if (event.key == "Left"){
+  Down();
+   }
+});
+onEvent("addbtn", "click", function(){
+  var newiteam = getText("inserthere");
+  insertItem(favthings, indexnum, newiteam);
+  setText("inserthere", "");
+  updatetxt(indexnum);
+});
+function updatetxt(n) {
+  setText("counter", (n+1) + " of " + favthings.length);
+  setImageURL("imagearea", favthings[n]);
+}
+function Up () {
+   indexnum = indexnum+1;
+  if (indexnum >= favthings.length) {
+    indexnum = 0;
+  }
+  updatetxt(indexnum);
+}
+function Down () {
+    indexnum=indexnum-1;
+  if (indexnum <=0) {
+    indexnum = 0;
+  }
+  updatetxt(indexnum);
+}
+
